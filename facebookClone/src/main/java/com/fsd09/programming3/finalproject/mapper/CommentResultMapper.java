@@ -1,19 +1,19 @@
 package com.fsd09.programming3.finalproject.mapper;
 
-import com.fsd09.programming3.finalproject.DTO.CommentDTO;
 import com.fsd09.programming3.finalproject.entity.Comment;
+import com.fsd09.programming3.finalproject.result.CommentResult;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
 
 /**
- *
+ * mapper to convert Entity to Result
  */
 @Component
-public class CommentDTOMapper implements Function<Comment, CommentDTO> {
+public class CommentResultMapper implements Function<Comment, CommentResult> {
     @Override
-    public CommentDTO apply(Comment comment) {
-        return new CommentDTO(comment.getCommentId(),
+    public CommentResult apply(Comment comment) {
+        return new CommentResult(comment.getCommentId(),
                 comment.getCommentContent(),
                 comment.getUser().getUserId(),
                 comment.getPost().getPostId());

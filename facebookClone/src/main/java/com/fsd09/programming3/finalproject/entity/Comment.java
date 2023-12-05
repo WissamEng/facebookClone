@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "comment")
+@Table(name = "final_project_comment")
 public class Comment {
     @Id
     @Column(name = "comment_id")
@@ -24,6 +25,7 @@ public class Comment {
     @Column(name = "comment_content", columnDefinition = "VARCHAR(1000)")
     private String commentContent;
     @Column(name = "comment_time")
+    @CreationTimestamp
     private LocalDateTime commentTime;
 
     @ManyToOne

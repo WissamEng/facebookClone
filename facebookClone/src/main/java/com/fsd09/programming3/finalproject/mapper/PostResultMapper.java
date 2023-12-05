@@ -1,6 +1,6 @@
 package com.fsd09.programming3.finalproject.mapper;
 
-import com.fsd09.programming3.finalproject.DTO.PostDTO;
+import com.fsd09.programming3.finalproject.result.PostResult;
 import com.fsd09.programming3.finalproject.entity.Post;
 import org.springframework.stereotype.Component;
 
@@ -9,15 +9,15 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- *
+ *mapper to convert Entity to Result
  */
 @Component
-public class PostDTOMapper implements Function<Post, PostDTO> {
+public class PostResultMapper implements Function<Post, PostResult> {
 
     @Override
-    public PostDTO apply(Post post) {
+    public PostResult apply(Post post) {
         List<String> commentIdList = post.getCommentList().stream().map(item -> item.getCommentId()).collect(Collectors.toList());
-        return new PostDTO(
+        return new PostResult(
                 post.getPostId(),
                 post.getPostContent(),
                 post.getUser().getUserId(),

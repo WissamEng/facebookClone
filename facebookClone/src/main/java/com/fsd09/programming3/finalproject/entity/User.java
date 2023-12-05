@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "user")
+@Table(name = "final_project_user")
 public class User {
     @Id
     @Column(name = "user_id")
@@ -28,12 +29,13 @@ public class User {
     private String email;
 
     @Column(name = "create_Time")
+    @CreationTimestamp
     private LocalDateTime createTime;
     @Column(name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "final_project_user", cascade = CascadeType.ALL)
     private List<Post> postList;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "final_project_user", cascade = CascadeType.ALL)
     private List<Comment> commentList;
 }

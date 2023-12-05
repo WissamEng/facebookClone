@@ -1,12 +1,12 @@
-package com.fsd09.programming3.finalproject.DTO;
+package com.fsd09.programming3.finalproject.result;
 
 import java.util.List;
 
 /**
- *
+ *As the data type to return to frontend
  */
 
-public record PostDTO(
+public record PostResult(
         String postId,
         String postContent,
         String userId,
