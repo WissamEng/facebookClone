@@ -1,4 +1,4 @@
-package com.fsd09.programming3.finalproject.DTO;
+package com.fsd09.programming3.finalproject.domain;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import java.util.List;
  *
  */
 
-public record UserDTO(
+public record UserDomain(
         String userId,
         String userName,
         String email,
