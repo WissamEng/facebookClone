@@ -34,8 +34,8 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "final_project_user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Post> postList;
-    @OneToMany(mappedBy = "final_project_user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Comment> commentList;
 }
