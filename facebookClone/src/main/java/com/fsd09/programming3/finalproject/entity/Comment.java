@@ -21,7 +21,7 @@ public class Comment {
     @Id
     @Column(name = "comment_id")
     private String commentId;
-    @Column(name = "comment_content", columnDefinition = "VARCHAR1000")
+    @Column(name = "comment_content", columnDefinition = "VARCHAR(1000)")
     private String commentContent;
     @Column(name = "comment_time")
     private LocalDateTime commentTime;
