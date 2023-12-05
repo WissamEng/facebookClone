@@ -2,9 +2,9 @@ server:
   port: 8090
 spring:
   datasource:
-    username: root
-    password: wodediannao
-    url: jdbc:mysql://192.168.137.138/exam
+    username: freedb_wissam
+    password: wPS4%AM&?$bjbQH
+    url: jdbc:mysql://sql.freedb.tech:3306/freedb_FreeDBFSD9
   jpa:
     hibernate:
       ddl-auto: update
