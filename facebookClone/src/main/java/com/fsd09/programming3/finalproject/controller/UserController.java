@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +31,7 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
         this.userService = userService;
     }
+
 
     @PostMapping("/register")
     public ResponseEntity<Object> registerNewUser(@RequestParam String userName,@RequestParam String password,@RequestParam String email){
