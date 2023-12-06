@@ -63,6 +63,9 @@
 				<div class="form-footer">
 					<a href="/register" class="btn btn-secondary w-100 mt-2">Register</a>
 				</div>
+				<div th:if="${error}" class="alert alert-danger">
+					<p th:text="${error}"></p>
+				</div>
 			</form>
 		</div>
 	</body>

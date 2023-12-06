@@ -1,5 +1,7 @@
 package com.fsd09.programming3.finalproject.config;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,10 +10,12 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import javax.naming.AuthenticationException;
 import java.util.Arrays;
 
 /**
@@ -21,10 +25,12 @@ import java.util.Arrays;
 @EnableWebSecurity
 public class SecurityConfig {
     private final AuthenticationProvider authenticationProvider;
+    private final AuthenticationFailureHandler failureHandler;
 
     @Autowired
-    public SecurityConfig(AuthenticationProvider authenticationProvider) {
+    public SecurityConfig(AuthenticationProvider authenticationProvider, AuthenticationFailureHandler failureHandler) {
         this.authenticationProvider = authenticationProvider;
+        this.failureHandler = failureHandler;
     }
 
     @Bean
@@ -32,27 +38,17 @@ public class SecurityConfig {
         http
                 .csrf(csrf->csrf.disable())
                 .authorizeHttpRequests(authz-> //TODO finish the register page
-                        authz.requestMatchers("/public/**","/user/register","/login")
+                        authz.requestMatchers("/public/**","/user/register")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated())
-//                .cors(cors->cors.configurationSource(corsConfigurationSource()))
                 .formLogin(loginForm->loginForm
                         .loginPage("/login_page")
                         .loginProcessingUrl("/doLogin")
                         .successForwardUrl("/home")
+                        .failureHandler(failureHandler)
                         .permitAll())
                 .authenticationProvider(authenticationProvider);
         return http.build();
     }
-//    @Bean
-//    CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration configuration = new CorsConfiguration();
-//        configuration.setAllowedOrigins(Arrays.asList("*"));
-//        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-//        configuration.setAllowedHeaders(Arrays.asList("*"));
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration);
-//        return source;
-//    }
 }
