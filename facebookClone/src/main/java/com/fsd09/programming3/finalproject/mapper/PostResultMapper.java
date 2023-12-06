@@ -3,13 +3,15 @@ package com.fsd09.programming3.finalproject.mapper;
 import com.fsd09.programming3.finalproject.result.PostResult;
 import com.fsd09.programming3.finalproject.entity.Post;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- *mapper to convert Entity to Result
+ * mapper to convert Entity to Result
  */
 @Component
 public class PostResultMapper implements Function<Post, PostResult> {
@@ -22,6 +24,6 @@ public class PostResultMapper implements Function<Post, PostResult> {
                 post.getPostContent(),
                 post.getUser().getUserId(),
                 commentIdList
-                );
+        );
     }
 }
