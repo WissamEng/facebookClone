@@ -23,9 +23,9 @@ public class User {
     @Id
     @Column(name = "user_id")
     private String userId;
-    @Column(name = "user_name")
+    @Column(name = "user_name", unique = true)
     private String userName;
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "create_Time")

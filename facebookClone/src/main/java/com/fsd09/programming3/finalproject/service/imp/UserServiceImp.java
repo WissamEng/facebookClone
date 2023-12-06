@@ -29,7 +29,5 @@ public class UserServiceImp implements IUserService {
         user.setCommentList(new ArrayList<>());
         User add = userRepository.save(user);
         return userResultMapper.apply(add);
-
-
     }
 }

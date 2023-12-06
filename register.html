@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Login</title>
+		<title>Register</title>
 		<link
 			rel="stylesheet"
 			href="https://bootswatch.com/5/sketchy/bootstrap.min.css"
@@ -15,7 +15,7 @@
 				align-items: center;
 				height: 100vh;
 			}
-			.login-container {
+			.register-container {
 				width: 100%;
 				max-width: 400px;
 				padding: 15px;
@@ -27,16 +27,16 @@
 			.form-label {
 				margin-bottom: 0.5rem;
 			}
-			.login-title {
+			.register-title {
 				text-align: center;
 				margin-bottom: 1.5rem;
 			}
 		</style>
 	</head>
 	<body>
-		<div class="login-container">
-			<h2 class="login-title">Login</h2>
-			<form action="/doLogin" method="post">
+		<div class="register-container">
+			<h2 class="register-title">Register</h2>
+			<form id="form" method="post">
 				<div class="mb-3">
 					<label for="username" class="form-label">Username</label>
 					<input
@@ -59,14 +59,42 @@
 						placeholder="Password"
 					/>
 				</div>
-				<button type="submit" class="btn btn-primary w-100">Login</button>
+				<div class="mb-3">
+					<label for="confirmPassword" class="form-label"
+						>Confirm Password</label
+					>
+					<input
+						type="password"
+						class="form-control"
+						id="confirmPassword"
+						name="confirmPassword"
+						required
+						placeholder="Confirm Password"
+					/>
+				</div>
+				<div class="mb-3">
+					<label for="email" class="form-label">Email</label>
+					<input
+						type="email"
+						class="form-control"
+						id="email"
+						name="email"
+						required
+						placeholder="Email"
+					/>
+				</div>
+				<button id="submit" class="btn btn-primary w-100">Register</button>
 				<div class="form-footer">
-					<a href="/user/register" class="btn btn-secondary w-100 mt-2">Register</a>
+					<a href="/login_page" class="btn btn-secondary w-100 mt-2"
+						>Already have an account? Login</a
+					>
 				</div>
 				<div th:if="${error}" class="alert alert-danger">
-					<p th:text="${error}"></p>
+					<p th:text="${error}" id="error"></p>
 				</div>
 			</form>
 		</div>
 	</body>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="./register.js"></script>
 </html>

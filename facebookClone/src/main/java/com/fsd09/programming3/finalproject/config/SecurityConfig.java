@@ -38,7 +38,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf->csrf.disable())
                 .authorizeHttpRequests(authz-> //TODO finish the register page
-                        authz.requestMatchers("/public/**","/user/register")
+                        authz.requestMatchers("/public/**","/user/register","/js/**")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated())
