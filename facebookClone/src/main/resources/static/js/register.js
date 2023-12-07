@@ -27,7 +27,7 @@ const handleSubmit = async function (event) {
 
 	} catch (error) {
 		document.querySelector(".alert").style.display = "block"
-		document.querySelector("#error").textContent = error.response.data.message
+		document.querySelector("#error").innerHTML = error.response.data.message
 		console.log(error);
 	}
 };

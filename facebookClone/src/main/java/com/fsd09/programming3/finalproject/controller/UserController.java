@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -38,7 +39,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Object> registerNewUser(@RequestBody UserDTOForRegister userDTO) {
+    public ResponseEntity<Object> registerNewUser(@RequestBody @Validated UserDTOForRegister userDTO) {
         User newUser = new User()
                 .builder()
                 .userId(IDGenerator.generateUserId())
