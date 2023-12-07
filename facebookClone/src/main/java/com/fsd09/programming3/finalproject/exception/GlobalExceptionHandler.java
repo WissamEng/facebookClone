@@ -1,10 +1,14 @@
 package com.fsd09.programming3.finalproject.exception;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import java.io.IOException;
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 
 /**
  *
@@ -29,5 +33,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleException(Exception e) {
         ErrorResponse errorResponse = new ErrorResponse("something went wrong");
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    @ExceptionHandler(UserPrincipalNotFoundException.class)
+    public void handleUserPrincipalNotFoundException(Exception e, HttpServletResponse response) throws IOException {
+        response.sendRedirect("/login_page?error=true");
     }
 }

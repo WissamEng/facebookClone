@@ -1,5 +1,7 @@
 package com.fsd09.programming3.finalproject.service.imp;
 
+import com.fsd09.programming3.finalproject.entity.Comment;
+import com.fsd09.programming3.finalproject.entity.Post;
 import com.fsd09.programming3.finalproject.entity.User;
 import com.fsd09.programming3.finalproject.mapper.UserResultMapper;
 import com.fsd09.programming3.finalproject.repository.UserRepository;
@@ -25,8 +27,8 @@ public class UserServiceImp implements IUserService {
 
     @Override
     public UserResult insertNewUser(User user) {
-        user.setPostList(new ArrayList<>());
-        user.setCommentList(new ArrayList<>());
+        user.setPostList(new ArrayList<Post>());
+        user.setCommentList(new ArrayList<Comment>());
         User add = userRepository.save(user);
         return userResultMapper.apply(add);
     }
