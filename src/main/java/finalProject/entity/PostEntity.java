@@ -1,6 +1,7 @@
 package finalProject.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ public class PostEntity {
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
+    @JsonIgnore
     private CustomerEntity customer;
 
     @Column(nullable = false)
@@ -31,5 +33,6 @@ public class PostEntity {
 
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<CommentEntity> comments;
 }

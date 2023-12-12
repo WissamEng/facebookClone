@@ -38,7 +38,7 @@ public class PostController {
         thePostsList.addAttribute("posts", postDTOS);
 
         //return the thymeleaf
-        return "list";
+        return "list-post";
     }
     
     

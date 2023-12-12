@@ -23,7 +23,7 @@ public class CommentController {
         this.commentMapperHelper = commentMapperHelper;
     }
     
-    @GetMapping("/ssslist")
+    @GetMapping("/list")
     public String listComment(Model theComments) {
         // call the service to bring the comments
         List<Comment> allComments = commentService.getAllComments();
@@ -35,7 +35,7 @@ public class CommentController {
         theComments.addAttribute("comments", commentDTOS);
 
         //return the thymeleaf
-        return "list";
+        return "list-post";
     }
     
 }

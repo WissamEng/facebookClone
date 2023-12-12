@@ -22,9 +22,9 @@
         <thead class="table-dark">
         <tr>
             <th>ID</th>
-            <th>Customer ID</th>
+            <th>customer ID</th>
             <th>Content</th>
-            <th>Created At</th>
+            <th>created at</th>
 
         </tr>
         </thead>
@@ -34,6 +34,35 @@
             <td th:text="${tmpPost.customerId}"></td>
             <td th:text="${tmpPost.content}"></td>
             <td th:text="${tmpPost.createdAt}"></td>
+
+
+        </tr>
+        </tbody>
+    </table>
+
+    <h3> All comments</h3>
+    <hr>
+
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>customer ID</th>
+            <th>post ID</th>
+            <th>Content</th>
+            <th>created at</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tmpCom : ${comments}">
+            <td th:text="${tmpCom.id}"></td>
+            <td th:text="${tmpCom.customerId}"></td>
+            <td th:text="${tmpCom.postId}"></td>
+            <td th:text="${tmpCom.content}"></td>
+            <td th:text="${tmpCom.createdAt}"></td>
+
 
         </tr>
         </tbody>

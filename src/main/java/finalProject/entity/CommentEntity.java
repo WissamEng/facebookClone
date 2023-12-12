@@ -1,5 +1,6 @@
 package finalProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import jakarta.persistence.*;
@@ -19,10 +20,12 @@ public class CommentEntity {
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
+    @JsonIgnore
     private CustomerEntity customer;
 
     @ManyToOne
     @JoinColumn(name = "post_id", nullable = false)
+    @JsonIgnore
     private PostEntity post;
 
     @Column(nullable = false)
