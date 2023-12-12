@@ -6,14 +6,17 @@ import finalProject.exception.CustomerNotFoundException;
 import finalProject.mapper.CustomerMapperHelper;
 import finalProject.repository.CustomerRepository;
 import finalProject.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
     private final CustomerMapperHelper customerMapperHelper;
 
+    @Autowired
     public CustomerServiceImpl(CustomerRepository customerRepository, CustomerMapperHelper customerMapperHelper) {
         this.customerRepository = customerRepository;
         this.customerMapperHelper = customerMapperHelper;

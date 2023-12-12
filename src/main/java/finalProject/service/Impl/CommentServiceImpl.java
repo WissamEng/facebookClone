@@ -10,16 +10,19 @@ import finalProject.repository.CommentRepository;
 import finalProject.repository.PostRepository;
 import finalProject.service.CommentService;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
     private final CommentMapperHelper commentMapperHelper;
     private final PostRepository postRepository;
 
+    @Autowired
     public CommentServiceImpl(CommentRepository commentRepository, CommentMapperHelper commentMapperHelper, PostRepository postRepository) {
         this.commentRepository = commentRepository;
         this.commentMapperHelper = commentMapperHelper;

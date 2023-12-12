@@ -8,15 +8,18 @@ import finalProject.exception.PostNotFoundException;
 import finalProject.mapper.PostMapperHelper;
 import finalProject.repository.PostRepository;
 import finalProject.service.PostService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
     private final PostMapperHelper postMapperHelper;
 
+    @Autowired
     public PostServiceImpl(PostRepository postRepository, PostMapperHelper postMapperHelper) {
         this.postRepository = postRepository;
         this.postMapperHelper = postMapperHelper;
