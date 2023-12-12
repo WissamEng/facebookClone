@@ -42,14 +42,14 @@ public class GlobalExceptionHandler {
         errorResponse.setMessage(errorMessage.toString());
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(UserPrincipalNotFoundException.class)
+    public void handleUserPrincipalNotFoundException(Exception e, HttpServletResponse response) throws IOException {
+        response.sendRedirect("/login_page?error=true");
+    }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException(Exception e) {
         ErrorResponse errorResponse = new ErrorResponse("something went wrong");
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-    @ExceptionHandler(UserPrincipalNotFoundException.class)
-    public void handleUserPrincipalNotFoundException(Exception e, HttpServletResponse response) throws IOException {
-        response.sendRedirect("/login_page?error=true");
     }
 }
