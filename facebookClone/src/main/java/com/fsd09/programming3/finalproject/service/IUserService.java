@@ -11,4 +11,5 @@ import org.springframework.stereotype.Service;
 
 public interface IUserService {
     UserResult insertNewUser(User user);
+    UserResult getUserbyId(String userId);
 }

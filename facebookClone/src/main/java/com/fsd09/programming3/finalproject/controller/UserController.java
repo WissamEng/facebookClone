@@ -6,6 +6,7 @@ import com.fsd09.programming3.finalproject.entity.User;
 import com.fsd09.programming3.finalproject.result.UserResult;
 import com.fsd09.programming3.finalproject.service.IUserService;
 import com.fsd09.programming3.finalproject.util.IDGenerator;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.PerformanceSensitive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/user")
 @CrossOrigin
+@Slf4j
 public class UserController {
 
     private final IUserService userService;
@@ -47,6 +49,7 @@ public class UserController {
                 .password(passwordEncoder.encode(userDTO.getPassword()))
                 .email(userDTO.getEmail())
                 .build();
+
         UserResult userResult = userService.insertNewUser(newUser);
         if (BeanUtil.isNotEmpty(userResult)) {
             return ResponseEntity.ok().body("user has been added");

@@ -10,5 +10,6 @@ import java.util.List;
  *
  */
 public interface PostRepository extends JpaRepository<Post, String> {
+    long deleteByPostIdIgnoreCase(String postId);
     List<Post> findByUser(User user);
 }

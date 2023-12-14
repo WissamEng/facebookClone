@@ -79,7 +79,6 @@ public class PostRepositoryTest {
         log.info("the user {} posted this post", postByUser.get(0).getUser().getUserName());
         log.info("the post content is {}", postByUser.get(0).getPostContent());
         log.info("the post is created at {}", postByUser.get(0).getPostTime());
-        log.info("user post list {}", userResult.postIdList().toString());
         log.info("user total {}", userRepository.findAll().size());
         assertThat(byId).isNotNull();
     }

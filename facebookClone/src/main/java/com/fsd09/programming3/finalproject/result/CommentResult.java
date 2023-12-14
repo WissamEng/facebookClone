@@ -7,7 +7,9 @@ package com.fsd09.programming3.finalproject.result;
 public record CommentResult(
         String commentId,
         String commentContent,
+        String commentTime,
         String userId,
+        String username,
         String postId
 
 ) {

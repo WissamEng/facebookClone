@@ -9,8 +9,10 @@ import java.util.List;
 public record PostResult(
         String postId,
         String postContent,
+        String postDate,
         String userId,
-        List<String> commentIdList
+        String username,
+        List<CommentResult> commentResults
 ) {
 
 }

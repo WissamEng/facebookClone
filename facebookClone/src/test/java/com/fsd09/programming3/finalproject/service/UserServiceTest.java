@@ -1,6 +1,8 @@
 package com.fsd09.programming3.finalproject.service;
 
 import com.fsd09.programming3.finalproject.entity.User;
+import com.fsd09.programming3.finalproject.mapper.CommentResultMapper;
+import com.fsd09.programming3.finalproject.mapper.PostResultMapper;
 import com.fsd09.programming3.finalproject.mapper.UserResultMapper;
 import com.fsd09.programming3.finalproject.repository.UserRepository;
 import com.fsd09.programming3.finalproject.service.imp.UserServiceImp;
@@ -31,7 +33,7 @@ public class UserServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        userService = new UserServiceImp(userRepository, new UserResultMapper());
+        userService = new UserServiceImp(userRepository, new UserResultMapper(new CommentResultMapper(), new PostResultMapper(new CommentResultMapper())));
     }
 
     @Test

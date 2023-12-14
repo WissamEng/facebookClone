@@ -4,7 +4,7 @@ const handleSubmit = async function (event) {
 	const password = document.querySelector("#password").value;
 	const confirmPassword = document.querySelector("#confirmPassword").value;
 	if (password !== confirmPassword) {
-		document.querySelector(".alert").style.display = "block"
+		document.querySelector(".alert").style.display = "block";
 		document.querySelector("#error").textContent =
 			"Please confirm your password";
 		return;
@@ -23,11 +23,10 @@ const handleSubmit = async function (event) {
 			data,
 		});
 		console.log(response);
-		window.location.href = 'http://localhost:8090';
-
+		window.location.href = "http://localhost:8090";
 	} catch (error) {
-		document.querySelector(".alert").style.display = "block"
-		document.querySelector("#error").innerHTML = error.response.data.message
+		document.querySelector(".alert").style.display = "block";
+		document.querySelector("#error").innerHTML = error.response.data.message;
 		console.log(error);
 	}
 };

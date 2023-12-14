@@ -38,7 +38,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf->csrf.disable())
                 .authorizeHttpRequests(authz-> //TODO finish the register page
-                        authz.requestMatchers("/public/**","/user/register","/js/**")
+                        authz.requestMatchers("/public/**","/user/register","/js/**,/doLogin,")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated())
@@ -48,6 +48,11 @@ public class SecurityConfig {
                         .successForwardUrl("/home")
                         .failureHandler(failureHandler)
                         .permitAll())
+                .logout(logout->
+                        logout.logoutUrl("/logout")
+                                .logoutSuccessUrl("/login_page")
+                                .invalidateHttpSession(true))
+
                 .authenticationProvider(authenticationProvider);
         return http.build();
     }

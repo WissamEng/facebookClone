@@ -1,15 +1,3 @@
-server:
-  port: 8090
 spring:
-  datasource:
-    username: freedb_wissam
-    password: wPS4%AM&?$bjbQH
-    url: jdbc:mysql://sql.freedb.tech:3306/freedb_FreeDBFSD9
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-logging:
-  pattern:
-    dateformat: "yyyy-MM-dd HH:mm:ss"
+  profiles:
+    active: local

@@ -1,0 +1,18 @@
+server:
+  port: 8090
+spring:
+  datasource:
+    username: root
+    password: wodediannao
+    url: jdbc:mysql://192.168.137.138/exam
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+logging:
+  pattern:
+    dateformat: "yyyy-MM-dd HH:mm:ss"
+  level:
+    root: info
+    org.thymeleaf: debug

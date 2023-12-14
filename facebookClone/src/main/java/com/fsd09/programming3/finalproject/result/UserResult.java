@@ -10,7 +10,7 @@ public record UserResult(
         String userId,
         String userName,
         String email,
-        List<String> postIdList,
-        List<String> commentIdList
+        List<PostResult> postResults,
+        List<CommentResult> commentResults
 ) {
 }
