@@ -28,26 +28,26 @@ import java.util.List;
 @CrossOrigin
 @Slf4j
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+
 public class LoginController {
     private final AuthenticationContextGetter authenticationContextGetter;
-    private final UserResultMapper userResultMapper;
     private final IUserService userService;
     private final IPostService postService;
     @GetMapping("/login_page")
-    public String loginPage(@RequestParam(required = false) Boolean error, Model model) {
+    public String loginPage(@RequestParam(required = false) boolean error, @RequestParam(required = false)boolean message, Model model) {
         if (BooleanUtil.isTrue(error)) {
             model.addAttribute("error", "wrong username or password");
+        }
+        if(BooleanUtil.isTrue(message)){
+            model.addAttribute("message", "user has been added, please login");
         }
         return "loginPage";
     }
 
 
-
     @RequestMapping("/home")
     public String home(Model model) throws UserPrincipalNotFoundException {
         User user = authenticationContextGetter.getCurrentAuthenticatedUser();
-        //todo 手动刷新list
         String userId = user.getUserId();
         UserResult userResult = userService.getUserbyId(userId);
         List<PostResult> allPost = postService.getAllPost();

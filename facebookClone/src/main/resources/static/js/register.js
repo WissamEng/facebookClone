@@ -1,6 +1,7 @@
 const handleSubmit = async function (event) {
 	console.log(11);
 	event.preventDefault();
+
 	const password = document.querySelector("#password").value;
 	const confirmPassword = document.querySelector("#confirmPassword").value;
 	if (password !== confirmPassword) {
@@ -9,22 +10,32 @@ const handleSubmit = async function (event) {
 			"Please confirm your password";
 		return;
 	}
-	const form = document.querySelector("#form");
-	const formData = new FormData(form);
-	let data = {};
-	formData.forEach((value, key) => {
-		data[key] = value;
-	});
+	const username = document.querySelector("#username").value;
+	const email = document.querySelector("#email").value;
+
+	// Create a JSON object from the form inputs
+	let data = {
+		password,
+		username,
+		email,
+		// Add other form fields here as needed
+	};
 
 	try {
 		const response = await axios({
 			method: "post",
 			url: "http://localhost:8090/user/register",
 			data,
+			headers: {
+				"Content-Type": "application/json", // Ensure the content type is set to application/json
+			},
 		});
 		console.log(response);
-		window.location.href = "http://localhost:8090";
+		if (response.status === 200) {
+			window.location.href = "http://localhost:8090/login_page?message=true";
+		}
 	} catch (error) {
+		console.log("error");
 		document.querySelector(".alert").style.display = "block";
 		document.querySelector("#error").innerHTML = error.response.data.message;
 		console.log(error);

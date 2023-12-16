@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.nio.file.attribute.UserPrincipalNotFoundException;
 
@@ -16,6 +17,7 @@ import java.nio.file.attribute.UserPrincipalNotFoundException;
  * the user is stored in SecurityContextHolder
  */
 @Service
+
 public class AuthenticationContextGetter {
     public User getCurrentAuthenticatedUser() throws UserPrincipalNotFoundException {
         //get Authentication from SecurityContext

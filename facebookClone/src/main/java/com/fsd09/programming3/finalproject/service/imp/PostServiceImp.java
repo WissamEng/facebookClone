@@ -10,12 +10,10 @@ import com.fsd09.programming3.finalproject.service.IPostService;
 import com.fsd09.programming3.finalproject.util.IDGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -26,7 +24,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @RequiredArgsConstructor
-@Transactional
+
 @Slf4j
 public class PostServiceImp implements IPostService {
     private final PostRepository postRepository;
@@ -35,8 +33,6 @@ public class PostServiceImp implements IPostService {
 
     @Override
     public void addNewPost(User user, String postContent) {
-        String userId = user.getUserId();
-        User userEntity = userRepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException("user can not be found"));
         Post post = new Post()
                 .builder()
                 .postId(IDGenerator.generatePostId())
@@ -44,7 +40,8 @@ public class PostServiceImp implements IPostService {
                 .commentList(new ArrayList<>())
                 .user(user)
                 .build();
-        Post save = postRepository.save(post);
+        user.getPostList().add(post);
+        userRepository.save(user);
     }
 
     @Override
@@ -64,14 +61,18 @@ public class PostServiceImp implements IPostService {
     }
 
     @Override
-    public void deleteById(String postId) {
-        long l = postRepository.deleteByPostIdIgnoreCase(postId);
-        log.info(String.valueOf(l));
+    public void deleteById(String postId, String userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException("user can not be found"));
+        Post post = postRepository.findById(postId).orElseThrow(() -> new UsernameNotFoundException("Post can not be found"));
+        boolean remove = user.getPostList().remove(post);
+        userRepository.save(user);
+        postRepository.delete(post);
     }
 
     @Override
     public void updatePost(String postId, String postContent) {
         Post post = postRepository.findById(postId).orElseThrow(() -> new UsernameNotFoundException("post cant be found"));
         post.setPostContent(postContent);
+        postRepository.save(post);
     }
 }

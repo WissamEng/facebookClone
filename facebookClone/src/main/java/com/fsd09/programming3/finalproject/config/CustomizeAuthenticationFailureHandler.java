@@ -15,7 +15,7 @@ import java.io.IOException;
 @Component
 public class CustomizeAuthenticationFailureHandler implements AuthenticationFailureHandler {
     @Override
-    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException{
         response.sendRedirect("/login_page?error=true");
     }
 }

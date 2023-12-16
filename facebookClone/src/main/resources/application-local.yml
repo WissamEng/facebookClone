@@ -15,4 +15,4 @@ logging:
     dateformat: "yyyy-MM-dd HH:mm:ss"
   level:
     root: info
-    org.thymeleaf: debug
+

@@ -12,6 +12,6 @@ public interface IPostService {
     void addNewPost(User user, String string);
     List<PostResult> getAllPost();
     PostResult getPostById(String postId);
-    void deleteById(String postId);
+    void deleteById(String postId, String userId);
     void updatePost(String postId, String postContent);
 }

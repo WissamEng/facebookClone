@@ -3,6 +3,8 @@ package com.fsd09.programming3.finalproject.util;
 /**
  *
  */
+import org.springframework.transaction.annotation.Transactional;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;

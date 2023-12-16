@@ -6,14 +6,15 @@ import com.fsd09.programming3.finalproject.entity.User;
 import com.fsd09.programming3.finalproject.result.UserResult;
 import com.fsd09.programming3.finalproject.service.IUserService;
 import com.fsd09.programming3.finalproject.util.IDGenerator;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.util.PerformanceSensitive;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,16 +25,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 @CrossOrigin
 @Slf4j
+@RequiredArgsConstructor
 public class UserController {
 
     private final IUserService userService;
     private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    public UserController(IUserService userService, PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-        this.userService = userService;
-    }
 
     @GetMapping("/register")
     public String registerPage() {

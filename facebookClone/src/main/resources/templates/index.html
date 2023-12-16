@@ -51,8 +51,19 @@
 				>
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="/login"
-								>Login</a
+							<form
+								id="hiddenForm"
+								action="/logout"
+								method="post"
+								style="display: none"
+							></form>
+
+							<a
+								class="nav-link active"
+								aria-current="page"
+								href="#"
+								onclick="document.getElementById('hiddenForm').submit(); return false;"
+								>Logout</a
 							>
 						</li>
 						<li class="nav-item">
@@ -173,13 +184,25 @@
 									</div>
 								</div>
 								<div>
-									<div class="mb-3">
-										<textarea class="fs-6 form-control" rows="1"></textarea>
-									</div>
-									<div>
-										<button class="btn btn-primary btn-sm">Post Comment</button>
-									</div>
-									share
+									<form
+										th:action="@{/comment/addNewComment(postId=${post.postId})}"
+										method="post"
+									>
+										<div class="mb-3">
+											<textarea
+												class="fs-6 form-control"
+												rows="1"
+												name="commentContent"
+												minlength="10"
+											></textarea>
+										</div>
+										<div>
+											<button type="submit" class="btn btn-primary btn-sm">
+												Post Comment
+											</button>
+										</div>
+									</form>
+
 									<hr />
 									<div
 										class="d-flex align-items-start"
@@ -193,7 +216,7 @@
 										/>
 										<div class="w-100">
 											<div class="d-flex justify-content-between">
-												<h6 class="" th:text="comment.username"></h6>
+												<h6 class="" th:text="${comment.username}"></h6>
 												<small
 													class="fs-6 fw-light text-muted"
 													th:text="${comment.commentTime}"
@@ -205,14 +228,16 @@
 											></p>
 											<div sec:authorize="isAuthenticated()">
 												<button
-													th:if="${comment.userId == #authentication.name}"
-													class="btn btn-primary"
+													th:if="${comment.username() == #authentication.name}"
+													class="btn btn-primary commentEdit"
+													th:attr="data-comment-id=${comment.commentId}"
 												>
 													edit
 												</button>
 												<button
-													th:if="${comment.userId == #authentication.name}"
-													class="btn btn-danger"
+													th:if="${comment.username()== #authentication.name}"
+													class="btn btn-danger commentDelete"
+													th:attr="data-comment-id=${comment.commentId}"
 												>
 													delete
 												</button>

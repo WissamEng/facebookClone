@@ -17,8 +17,6 @@ const handleShareButton = async () => {
 			});
 			window.location.href = "http://localhost:8090/home";
 		} catch (error) {
-			// document.querySelector(".alert").style.display = "block";
-			// document.querySelector("#error").innerHTML = error.response.data.message;
 			console.log(error);
 		}
 	}
@@ -43,11 +41,37 @@ const handleDelete = (e) => {
 	}
 };
 
-// document
-// 	.querySelector(".shareIdea")
-// 	.addEventListener("click", handleShareButton);
+const handleEditComment = (e) => {
+	console.log(11);
+	const commentId = e.target.getAttribute("data-comment-id");
+	console.log(commentId);
+
+	// Navigate to the edit page
+	window.location.href = `http://localhost:8090/comment/edit?commentId=${commentId}`;
+};
+
+const handleCommentDelete = (e) => {
+	const isConfirmed = window.confirm("Are you sure to delete this comment?");
+	if (isConfirmed) {
+		const commentId = e.target.getAttribute("data-comment-id");
+		console.log(commentId);
+
+		window.location.href = `http://localhost:8090/comment/delete?commentId=${commentId}`;
+	}
+};
+
 const editBtn = document.querySelectorAll(".edit");
 editBtn.forEach((item) => item.addEventListener("click", handleEdit));
 
 const deleteBtn = document.querySelectorAll(".delete");
 deleteBtn.forEach((item) => item.addEventListener("click", handleDelete));
+
+const editCommentBtn = document.querySelectorAll(".commentEdit");
+editCommentBtn.forEach((item) =>
+	item.addEventListener("click", handleEditComment)
+);
+
+const deleteCommentBtn = document.querySelectorAll(".commentDelete");
+deleteCommentBtn.forEach((item) =>
+	item.addEventListener("click", handleCommentDelete)
+);

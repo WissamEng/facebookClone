@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Edit Post</title>
+		<link
+			rel="stylesheet"
+			href="https://bootswatch.com/5/sketchy/bootstrap.min.css"
+		/>
+		<style>
+			body {
+				background-color: #f8f9fa;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+			}
+			.edit-container {
+				width: 100%;
+				max-width: 600px;
+				padding: 15px;
+				margin: auto;
+				background-color: white;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				border-radius: 8px;
+			}
+			.form-label {
+				margin-bottom: 0.5rem;
+			}
+			.edit-title {
+				text-align: center;
+				margin-bottom: 1.5rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="edit-container">
+			<h2 class="edit-title">Edit Comment</h2>
+			<form action="/comment/updateComment" method="post">
+				<input
+					type="hidden"
+					name="commentId"
+					th:value="${comment.commentId()}"
+				/>
+				<div class="mb-3">
+					<label for="content" class="form-label">Content</label>
+					<textarea
+						class="form-control"
+						id="content"
+						name="commentContent"
+						required
+						rows="5"
+						th:text="${comment.commentContent()}"
+					></textarea>
+				</div>
+				<button type="submit" class="btn btn-primary w-100">Submit</button>
+				<a href="/home" class="btn btn-secondary w-100 mt-2">Cancel</a>
+			</form>
+		</div>
+	</body>
+</html>
