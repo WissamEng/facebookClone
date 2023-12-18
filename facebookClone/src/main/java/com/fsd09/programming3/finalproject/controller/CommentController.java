@@ -31,7 +31,11 @@ public class CommentController {
     private final IPostService postService;
 
     @PostMapping("/addNewComment")
-    public String addNewComment(@RequestParam @NotEmpty String commentContent, @RequestParam String postId) throws UserPrincipalNotFoundException {
+    public String addNewComment(@RequestParam String commentContent, @RequestParam String postId, Model model) throws UserPrincipalNotFoundException {
+        if (commentContent == null || "".equals(commentContent)){
+            model.addAttribute("error", "Comment should not be blank");
+            return "redirect:/home";
+        }
         User user = authenticationContextGetter.getCurrentAuthenticatedUser();
         String userId = user.getUserId();
         PostResult post = postService.getPostById(postId);
