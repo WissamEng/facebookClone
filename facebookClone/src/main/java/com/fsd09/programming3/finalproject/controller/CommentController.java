@@ -24,7 +24,7 @@ import java.nio.file.attribute.UserPrincipalNotFoundException;
 @RequestMapping("/comment")
 @RequiredArgsConstructor
 @Slf4j
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class CommentController {
     private final ICommentService commentService;
     private final AuthenticationContextGetter authenticationContextGetter;

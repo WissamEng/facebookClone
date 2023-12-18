@@ -22,7 +22,7 @@ import java.nio.file.attribute.UserPrincipalNotFoundException;
 @RequestMapping("/post")
 @RequiredArgsConstructor
 @Slf4j
-@CrossOrigin
+@CrossOrigin(origins = "*")
 
 public class PostController {
     private final IPostService postService;

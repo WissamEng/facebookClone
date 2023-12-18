@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Controller
 @RequestMapping("/user")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @Slf4j
 @RequiredArgsConstructor
 public class UserController {

@@ -25,7 +25,7 @@ import java.util.List;
  *
  */
 @Controller
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @Slf4j
 @RequiredArgsConstructor
 
