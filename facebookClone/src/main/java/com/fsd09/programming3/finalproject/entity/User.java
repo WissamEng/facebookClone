@@ -1,5 +1,6 @@
 package com.fsd09.programming3.finalproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,6 +32,7 @@ public class User {
     @Column(name = "create_Time")
     @CreationTimestamp
     private LocalDateTime createTime;
+
     @Column(name = "password")
     private String password;
 

@@ -1,21 +1,18 @@
 const handleShareButton = async () => {
 	const postContent = document.querySelector("#idea").value;
 	if (postContent.trim() === "") {
-		// document.querySelector(".alert").style.display = "block";
-		// document.querySelector("#error").textContent =
-		// 	"Please confirm your password";
 		console.log("blank");
 	} else {
 		try {
 			const res = await axios({
 				method: "post",
-				url: "http://localhost:8090/post/addNewPost",
+				url: `http://${serverUrl}/post/addNewPost`,
 				data: postContent,
 				headers: {
 					"content-Type": "text/plain",
 				},
 			});
-			window.location.href = "http://localhost:8090/home";
+			window.location.href = `http://${serverUrl}/home`;
 		} catch (error) {
 			console.log(error);
 		}
@@ -27,7 +24,7 @@ const handleEdit = (e) => {
 	console.log(postId);
 
 	// Navigate to the edit page
-	window.location.href = `http://localhost:8090/post/edit?postId=${postId}`;
+	window.location.href = `http://${serverUrl}/post/edit?postId=${postId}`;
 };
 
 const handleDelete = (e) => {
@@ -37,7 +34,7 @@ const handleDelete = (e) => {
 		console.log(postId);
 
 		// Navigate to the edit page
-		window.location.href = `http://localhost:8090/post/delete?postId=${postId}`;
+		window.location.href = `http://${serverUrl}/post/delete?postId=${postId}`;
 	}
 };
 
@@ -47,7 +44,7 @@ const handleEditComment = (e) => {
 	console.log(commentId);
 
 	// Navigate to the edit page
-	window.location.href = `http://localhost:8090/comment/edit?commentId=${commentId}`;
+	window.location.href = `http://${serverUrl}/comment/edit?commentId=${commentId}`;
 };
 
 const handleCommentDelete = (e) => {
@@ -56,7 +53,7 @@ const handleCommentDelete = (e) => {
 		const commentId = e.target.getAttribute("data-comment-id");
 		console.log(commentId);
 
-		window.location.href = `http://localhost:8090/comment/delete?commentId=${commentId}`;
+		window.location.href = `http://${serverUrl}/comment/delete?commentId=${commentId}`;
 	}
 };
 

@@ -1,3 +1,5 @@
+	console.log(serverUrl);
+
 const handleSubmit = async function (event) {
 	console.log(11);
 	event.preventDefault();
@@ -24,7 +26,7 @@ const handleSubmit = async function (event) {
 	try {
 		const response = await axios({
 			method: "post",
-			url: "http://localhost:8090/user/register",
+			url: `http://${serverUrl}/user/register`,
 			data,
 			headers: {
 				"Content-Type": "application/json", // Ensure the content type is set to application/json
@@ -32,7 +34,7 @@ const handleSubmit = async function (event) {
 		});
 		console.log(response);
 		if (response.status === 200) {
-			window.location.href = "http://localhost:8090/login_page?message=true";
+			window.location.href = `http://${serverUrl}/login_page?message=true`;
 		}
 	} catch (error) {
 		console.log("error");

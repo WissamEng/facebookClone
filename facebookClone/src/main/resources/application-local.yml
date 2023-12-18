@@ -1,10 +1,11 @@
 server:
   port: 8090
+  url: localhost:8090
 spring:
   datasource:
     username: root
     password: wodediannao
-    url: jdbc:mysql://192.168.137.138/FP
+    url: jdbc:mysql://192.168.137.138/exam
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -15,4 +16,5 @@ logging:
     dateformat: "yyyy-MM-dd HH:mm:ss"
   level:
     root: info
+
 

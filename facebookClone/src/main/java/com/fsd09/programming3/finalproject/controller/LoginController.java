@@ -52,6 +52,7 @@ public class LoginController {
         UserResult userResult = userService.getUserbyId(userId);
         List<PostResult> allPost = postService.getAllPost();
         model.addAttribute("postList", allPost);
+        model.addAttribute("username", user.getUserName());
         return "index";
     }
 }

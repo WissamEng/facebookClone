@@ -1,5 +1,6 @@
 server:
   port: 8090
+  url: 20.14.93.178:8090
 spring:
   datasource:
     username: root

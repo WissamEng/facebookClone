@@ -1,11 +1,14 @@
 package com.fsd09.programming3.finalproject.service.imp;
 
+import com.fsd09.programming3.finalproject.entity.Comment;
 import com.fsd09.programming3.finalproject.entity.Post;
 import com.fsd09.programming3.finalproject.entity.User;
 import com.fsd09.programming3.finalproject.mapper.PostResultMapper;
+import com.fsd09.programming3.finalproject.repository.CommentRepository;
 import com.fsd09.programming3.finalproject.repository.PostRepository;
 import com.fsd09.programming3.finalproject.repository.UserRepository;
 import com.fsd09.programming3.finalproject.result.PostResult;
+import com.fsd09.programming3.finalproject.service.ICommentService;
 import com.fsd09.programming3.finalproject.service.IPostService;
 import com.fsd09.programming3.finalproject.util.IDGenerator;
 import lombok.RequiredArgsConstructor;
@@ -27,9 +30,11 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public class PostServiceImp implements IPostService {
+    private final CommentRepository commentRepository;
     private final PostRepository postRepository;
     private final UserRepository userRepository;
     private final PostResultMapper postResultMapper;
+    private final ICommentService commentService;
 
     @Override
     public void addNewPost(User user, String postContent) {
@@ -65,6 +70,14 @@ public class PostServiceImp implements IPostService {
         User user = userRepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException("user can not be found"));
         Post post = postRepository.findById(postId).orElseThrow(() -> new UsernameNotFoundException("Post can not be found"));
         boolean remove = user.getPostList().remove(post);
+        if (post.getCommentList().size()!=0){
+            ArrayList<Comment> copy = new ArrayList<>(post.getCommentList());
+
+            for (Comment comment: copy
+                 ) {
+                commentService.delete(comment.getCommentId());
+            }
+        }
         userRepository.save(user);
         postRepository.delete(post);
     }

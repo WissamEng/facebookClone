@@ -36,8 +36,6 @@ public class CommentController {
         String userId = user.getUserId();
         PostResult post = postService.getPostById(postId);
             commentService.addNewComment(post, commentContent, userId);
-
-
         return "redirect:/home";
     }
 
