@@ -6,4 +6,4 @@ COPY jarPth/facebookClone-0.0.1-SNAPSHOT.jar /app/app.jar
 
 ENTRYPOINT ["java","-jar","app.jar"]
 
-EXPOSE 8091
+EXPOSE 8090
