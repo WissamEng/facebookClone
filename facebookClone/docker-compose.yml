@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  app:
+    image: face-book-clone
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8091:8091"
+    environment:
+      - SPRING_PROFILES_ACTIVE=cloud
+    depends_on:
+      - db
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: wodediannao
+      MYSQL_DATABASE: initialdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./initdb.sql:/docker-entrypoint-initdb.d/init.sql
+    command: --default-authentication-plugin=mysql_native_password

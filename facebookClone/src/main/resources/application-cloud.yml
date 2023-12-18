@@ -1,10 +1,10 @@
 server:
-  port: 8090
+  port: 8091
 spring:
   datasource:
-    username: freedb_wissam
-    password: wPS4%AM&?$bjbQH
-    url: jdbc:mysql://sql.freedb.tech:3306/freedb_FreeDBFSD9
+    username: root
+    password: wodediannao
+    url: jdbc:mysql://db:3306/FP
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
