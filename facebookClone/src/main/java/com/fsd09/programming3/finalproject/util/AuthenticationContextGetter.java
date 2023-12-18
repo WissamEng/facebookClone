@@ -17,7 +17,6 @@ import java.nio.file.attribute.UserPrincipalNotFoundException;
  * the user is stored in SecurityContextHolder
  */
 @Service
-
 public class AuthenticationContextGetter {
     public User getCurrentAuthenticatedUser() throws UserPrincipalNotFoundException {
         //get Authentication from SecurityContext

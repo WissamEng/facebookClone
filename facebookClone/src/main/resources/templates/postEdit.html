@@ -52,6 +52,9 @@
 				<button type="submit" class="btn btn-primary w-100">Submit</button>
 				<a href="/home" class="btn btn-secondary w-100 mt-2">Cancel</a>
 			</form>
+			<div th:if="${error}" class="alert alert-danger">
+				<p th:text="${error}"></p>
+			</div>
 		</div>
 	</body>
 </html>

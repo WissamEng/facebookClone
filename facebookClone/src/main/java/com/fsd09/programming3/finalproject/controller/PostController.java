@@ -8,6 +8,7 @@ import com.fsd09.programming3.finalproject.service.IUserService;
 import com.fsd09.programming3.finalproject.util.AuthenticationContextGetter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.h2.engine.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -31,8 +32,11 @@ public class PostController {
 
     @PostMapping("/addNewPost")
     public String addNewPost(@RequestParam String postContent, Model model) throws UserPrincipalNotFoundException {
-        log.info(postContent);
         User user = authenticationContextGetter.getCurrentAuthenticatedUser();
+        if(postContent == null || "".equals(postContent)){
+            model.addAttribute("error", "post can not be blank");
+            return "redirect:/home";
+        }
         postService.addNewPost(user, postContent);
         UserResult userResult = userService.getUserbyId(user.getUserId());
         model.addAttribute("user", userResult);
@@ -62,8 +66,12 @@ public class PostController {
     }
 
     @PostMapping("/updatePost")
-    private String updatePost(@RequestParam String postContent, @RequestParam String postId) throws UserPrincipalNotFoundException {
+    private String updatePost(@RequestParam String postContent, @RequestParam String postId, Model model) throws UserPrincipalNotFoundException {
         User user = authenticationContextGetter.getCurrentAuthenticatedUser();
+        if(postContent == null || "".equals(postContent)){
+            model.addAttribute("error", "Post content can not be blank");
+            return "postEdit";
+        }
         String userId = user.getUserId();
         PostResult postById = postService.getPostById(postId);
         if (!userId.equals(postById.userId())){

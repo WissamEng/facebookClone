@@ -28,7 +28,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf->csrf.disable())
-                .authorizeHttpRequests(authz-> //TODO finish the register page
+                .authorizeHttpRequests(authz->
                         authz.requestMatchers("/public/**","/user/register","/js/**","/doLogin","/login_page")
                                 .permitAll()
                                 .anyRequest()
